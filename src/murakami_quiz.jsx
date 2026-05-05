@@ -23,7 +23,7 @@ const CHARACTERS = [
     description: "You carry your weight in private and trust almost no one with the full shape of it. There's a tougher voice inside you that insists you can handle whatever comes — a self-reassurance you reach for when you need it.",
   },
   {
-    name: 'Nakata',
+    name: 'Mr. Nakata',
     novel: 'Kafka on the Shore',
     epithet: 'The kindhearted wanderer',
     traits: [10, 9, 7, 6, 6],
@@ -41,7 +41,7 @@ const CHARACTERS = [
     novel: 'Kafka on the Shore',
     epithet: 'The articulate outsider',
     traits: [3, 3, 5, 5, 7],
-    description: "You think clearly, speak when it matters, and live strongly by your own carefully considered moral code. The margins suit you — you've made them yours by choice.",
+    description: "You think clearly, speak when it matters, and live by your own carefully considered code. The margins suit you — you've made them yours by choice.",
   },
   {
     name: 'Aomame',
@@ -80,10 +80,10 @@ const CHARACTERS = [
 // =====================================================================
 const QUESTIONS = [
   {
-    prompt: "You're walking home alone at night. A cat is sitting on a low wall, watching you approach. As you pass, it speaks and asks whether you'd like to hear something it knows. What do you do?",
+    prompt: "You're walking home alone, late. A cat is sitting on a low wall, watching you approach. As you pass, it speaks — clearly, in Japanese — and asks whether you'd like to hear something it knows.",
     options: [
       { text: "Stop and listen carefully. Cats don't usually do this without reason.", deltas: [2, 2, 0, 0, 1] },
-      { text: "Keep walking, but you will be thinking about it for weeks.", deltas: [1, 0, -2, 0, -2] },
+      { text: "Keep walking. You'll be thinking about what it said for weeks.", deltas: [1, 0, -2, 0, -2] },
       { text: "Sit down beside it. Ask what it wants in return.", deltas: [0, 2, 0, 2, 2] },
       { text: "Pretend you didn't hear. You don't have time for things that don't make sense.", deltas: [-2, -2, 0, 0, -2] },
     ],
@@ -102,7 +102,7 @@ const QUESTIONS = [
     options: [
       { text: "To climb down. You suspect there's something at the bottom that's connected to you.", deltas: [2, 0, -2, -2, 0] },
       { text: "To find out who built it and why. Wells don't appear on their own.", deltas: [-2, -2, 0, 0, -2] },
-      { text: "To stand at the edge for a while. This is a good place to reflect and appreciate the silence.", deltas: [2, 2, 0, 0, 0] },
+      { text: "To stand at the edge for a while. You'd come away knowing something, even if you couldn't say what.", deltas: [2, 2, 0, 0, 0] },
       { text: "To bring someone you trust there tomorrow. Things this strange shouldn't be experienced alone.", deltas: [0, -2, 0, 2, 2] },
     ],
   },
@@ -138,7 +138,7 @@ const QUESTIONS = [
     options: [
       { text: "You drift toward the bookshelf, the kitchen, somewhere quieter. Parties aren't really yours.", deltas: [0, 0, 0, -2, -2] },
       { text: "You find someone new to talk to. There's always someone worth knowing if you look.", deltas: [0, 0, 2, 2, 2] },
-      { text: "You observe for a while. You can learn a lot about the people around you just by watching.", deltas: [-2, -2, 0, 0, -2] },
+      { text: "You observe for a while. People reveal themselves when they don't know they're being watched.", deltas: [-2, -2, 0, 0, -2] },
       { text: "You stay where you are. People will come or they won't. It isn't really your concern.", deltas: [2, 2, 0, -2, 0] },
     ],
   },
@@ -161,7 +161,7 @@ const QUESTIONS = [
     ],
   },
   {
-    prompt: "When something hurts you, you're most likely to:",
+    prompt: "When something genuinely hurts you, you're most likely to:",
     options: [
       { text: "Withdraw. You need to be alone with it for a while before you can put words to it.", deltas: [0, 0, -2, -2, -2] },
       { text: "Talk it through with someone you trust, even if it takes you a while to start.", deltas: [0, 0, 0, 2, 2] },
@@ -364,6 +364,17 @@ function ResultScreen({ userVec, onRestart }) {
         </div>
       </div>
 
+      <div className="pt-6 space-y-6 border-t" style={{ borderColor: C.rule }}>
+        <p className="text-xs tracking-[0.25em] uppercase" style={{ color: C.ochre }}>
+          Where you landed
+        </p>
+        <div className="space-y-5">
+          {AXES.map((axis, i) => (
+            <AxisRow key={i} axis={axis} value={userVec[i]} />
+          ))}
+        </div>
+      </div>
+
       <SecondaryButton onClick={onRestart}>Take it again</SecondaryButton>
     </div>
   );
@@ -443,6 +454,31 @@ function EchoRow({ name, novel, match }) {
         <span className="italic ml-2" style={{ color: C.inkSoft }}>· {novel}</span>
       </span>
       <span className="text-sm tabular-nums" style={{ color: C.inkSoft }}>{match}%</span>
+    </div>
+  );
+}
+
+function AxisRow({ axis, value }) {
+  const percent = (value / 10) * 100;
+  return (
+    <div className="space-y-2">
+      <div className="flex justify-between text-sm" style={{ color: C.inkSoft }}>
+        <span>{axis.left}</span>
+        <span>{axis.right}</span>
+      </div>
+      <div className="relative h-px w-full" style={{ backgroundColor: C.rule }}>
+        <div
+          className="absolute"
+          style={{
+            left: `${percent}%`,
+            top: '-7px',
+            width: '2px',
+            height: '15px',
+            backgroundColor: C.ink,
+            transform: 'translateX(-50%)',
+          }}
+        />
+      </div>
     </div>
   );
 }
