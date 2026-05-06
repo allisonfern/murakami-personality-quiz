@@ -26,7 +26,7 @@ const CHARACTERS = [
     name: 'Mr. Nakata',
     novel: 'Kafka on the Shore',
     epithet: 'The kindhearted wanderer',
-    traits: [10, 9, 7, 6, 6],
+    traits: [10, 9, 9, 6, 7],
     description: "You move through the world without pretense or guile, attentive to small things others miss, willing to follow where you're called. Your simplicity is a quiet kind of wisdom.",
   },
   {
@@ -40,7 +40,7 @@ const CHARACTERS = [
     name: 'Oshima',
     novel: 'Kafka on the Shore',
     epithet: 'The articulate outsider',
-    traits: [3, 3, 5, 5, 7],
+    traits: [3, 3, 4, 5, 6],
     description: "You think clearly, speak when it matters, and live by your own carefully considered code. The margins suit you — you've made them yours by choice.",
   },
   {
@@ -68,7 +68,7 @@ const CHARACTERS = [
     name: 'Ushikawa',
     novel: '1Q84',
     epithet: 'The misunderstood investigator',
-    traits: [1, 1, 1, 7, 3],
+    traits: [1, 1, 1, 9, 3],
     description: "You see what other people miss and pay the price of seeing too clearly. People underestimate you and you've stopped correcting them. There's more humanity in you than the world gives you credit for.",
   },
 ];
@@ -80,10 +80,10 @@ const CHARACTERS = [
 // =====================================================================
 const QUESTIONS = [
   {
-    prompt: "You're walking home alone, late. A cat is sitting on a low wall, watching you approach. As you pass, it speaks — clearly, in Japanese — and asks whether you'd like to hear something it knows.",
+    prompt: "You're walking home alone at night. A cat is sitting on a low wall, watching you approach. As you pass, it speaks and asks whether you'd like to hear something it knows. What do you do?",
     options: [
       { text: "Stop and listen carefully. Cats don't usually do this without reason.", deltas: [2, 2, 0, 0, 1] },
-      { text: "Keep walking. You'll be thinking about what it said for weeks.", deltas: [1, 0, -2, 0, -2] },
+      { text: "Keep walking, but you will be thinking about it for weeks.", deltas: [1, 0, -2, 0, -2] },
       { text: "Sit down beside it. Ask what it wants in return.", deltas: [0, 2, 0, 2, 2] },
       { text: "Pretend you didn't hear. You don't have time for things that don't make sense.", deltas: [-2, -2, 0, 0, -2] },
     ],
@@ -102,7 +102,7 @@ const QUESTIONS = [
     options: [
       { text: "To climb down. You suspect there's something at the bottom that's connected to you.", deltas: [2, 0, -2, -2, 0] },
       { text: "To find out who built it and why. Wells don't appear on their own.", deltas: [-2, -2, 0, 0, -2] },
-      { text: "To stand at the edge for a while. You'd come away knowing something, even if you couldn't say what.", deltas: [2, 2, 0, 0, 0] },
+      { text: "To stand at the edge for a while. This is a good place to reflect and appreciate the silence.", deltas: [2, 2, 0, 0, 0] },
       { text: "To bring someone you trust there tomorrow. Things this strange shouldn't be experienced alone.", deltas: [0, -2, 0, 2, 2] },
     ],
   },
@@ -138,7 +138,7 @@ const QUESTIONS = [
     options: [
       { text: "You drift toward the bookshelf, the kitchen, somewhere quieter. Parties aren't really yours.", deltas: [0, 0, 0, -2, -2] },
       { text: "You find someone new to talk to. There's always someone worth knowing if you look.", deltas: [0, 0, 2, 2, 2] },
-      { text: "You observe for a while. People reveal themselves when they don't know they're being watched.", deltas: [-2, -2, 0, 0, -2] },
+      { text: "You observe for a while. You can learn a lot about the people around you just by watching.", deltas: [-2, -2, 0, 0, -2] },
       { text: "You stay where you are. People will come or they won't. It isn't really your concern.", deltas: [2, 2, 0, -2, 0] },
     ],
   },
@@ -161,7 +161,7 @@ const QUESTIONS = [
     ],
   },
   {
-    prompt: "When something genuinely hurts you, you're most likely to:",
+    prompt: "When something hurts you, you're most likely to:",
     options: [
       { text: "Withdraw. You need to be alone with it for a while before you can put words to it.", deltas: [0, 0, -2, -2, -2] },
       { text: "Talk it through with someone you trust, even if it takes you a while to start.", deltas: [0, 0, 0, 2, 2] },
